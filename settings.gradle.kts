@@ -29,4 +29,4 @@ stonecutter {
     }
 }
 
-rootProject.name = "MidiVoiceChat"
+rootProject.name = "MidiChat"
