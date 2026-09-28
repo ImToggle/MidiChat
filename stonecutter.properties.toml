@@ -7,7 +7,7 @@ deps.fabric_loader = "0.19.3"
 deps.vc_api = "2.6.24"
 loomx.loom_version = "1.17-SNAPSHOT"
 
-publish.modrinth = ""
+publish.modrinth = "YYEiAnoA"
 
 ["1.21.1~1.21.10"]
 mod.mc_compat = ">=1.21 <=1.21.10"

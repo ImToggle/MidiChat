@@ -8,10 +8,11 @@
     "ImToggle"
   ],
   "contact": {
-    "homepage": "",
-    "sources": ""
+    "homepage": "https://modrinth.com/mod/midichat",
+    "sources": "https://github.com/ImToggle/MidiChat",
+    "issues": "https://github.com/ImToggle/MidiChat/issues"
   },
-  "license": "",
+  "license": "GPL-3.0",
   "icon": "assets/midichat/icon.png",
   "environment": "client",
   "entrypoints": {
