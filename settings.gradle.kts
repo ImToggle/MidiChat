@@ -22,11 +22,11 @@ plugins {
 
 stonecutter {
     create(rootProject) {
-        versions("1.21.1", "1.21.4", "1.21.8", "1.21.10", "1.21.11")
-        version("26.1.x", "26.1")
-        version("26.2.x", "26.2")
-        vcsVersion = "26.2.x"
+        version("1.21.1~1.21.10", "1.21.10")
+        versions("1.21.11")
+        version("26.x", "26.3")
+        vcsVersion = "26.x"
     }
 }
 
-rootProject.name = "TemplateMod"
+rootProject.name = "MidiVoiceChat"

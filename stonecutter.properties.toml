@@ -1,65 +1,45 @@
-mod.id = "template"
-mod.name = "Template"
+mod.id = "midichat"
+mod.name = "MidiChat"
 mod.group = "me.imtoggle"
-mod.version = "0.1.0"
+mod.version = "1.0.0"
 
 deps.fabric_loader = "0.19.3"
+deps.vc_api = "2.6.24"
 loomx.loom_version = "1.17-SNAPSHOT"
 
 publish.modrinth = ""
 
-["1.21.1"]
-mod.mc_compat = ">=1.21 <=1.21.1"
-mod.mc_releases = ["1.21", "1.21.1"]
+["1.21.1~1.21.10"]
+mod.mc_compat = ">=1.21 <=1.21.10"
+mod.mc_version = "1.21.1-1.21.10"
+mod.mc_releases = [
+    "1.21", "1.21.1",
+    "1.21.2", "1.21.3", "1.21.4",
+    "1.21.5", "1.21.6", "1.21.7", "1.21.8",
+    "1.21.9", "1.21.10"
+]
 
-deps.modmenu = "11.0.4"
-deps.yacl = "3.8.2+1.21.1-fabric"
-deps.fabric_api = "0.116.13+1.21.1"
-
-["1.21.4"]
-mod.mc_compat = ">=1.21.2 <=1.21.4"
-mod.mc_releases = ["1.21.2", "1.21.3", "1.21.4"]
-
-deps.modmenu = "13.0.4"
-deps.yacl = "3.8.2+1.21.4-fabric"
-deps.fabric_api = "0.119.4+1.21.4"
-
-["1.21.8"]
-mod.mc_compat = ">=1.21.5 <=1.21.8"
-mod.mc_releases = ["1.21.5", "1.21.6", "1.21.7", "1.21.8"]
-
-deps.modmenu = "15.0.2"
-deps.yacl = "3.8.2+1.21.6-fabric"
-deps.fabric_api = "0.136.1+1.21.8"
-
-["1.21.10"]
-mod.mc_compat = ">=1.21.9 <=1.21.10"
-mod.mc_releases = ["1.21.9", "1.21.10"]
-
-deps.modmenu = "16.0.1"
-deps.yacl = "3.8.2+1.21.10-fabric"
 deps.fabric_api = "0.138.4+1.21.10"
+deps.modmenu = "16.0.1"
+deps.vc_mod = "1.21.10-2.6.24"
+deps.yacl = "3.8.2+1.21.10-fabric"
 
 ["1.21.11"]
 mod.mc_compat = "=1.21.11"
+mod.mc_version = "1.21.11"
 mod.mc_releases = ["1.21.11"]
 
-deps.modmenu = "17.0.0"
-deps.yacl = "3.8.2+1.21.11-fabric"
 deps.fabric_api = "0.141.4+1.21.11"
+deps.modmenu = "17.0.1"
+deps.vc_mod = "1.21.11-2.6.24"
+deps.yacl = "3.8.2+1.21.11-fabric"
 
-["26.1.x"]
-mod.mc_compat = "~26.1"
-mod.mc_releases = ["26.1", "26.1.1", "26.1.2"]
+["26.x"]
+mod.mc_compat = ">=26.1"
+mod.mc_version = "26.x"
+mod.mc_releases = ["26.1", "26.1.1", "26.1.2", "26.2", "26.3"]
 
-deps.modmenu = "18.0.0"
-deps.yacl = "3.9.5+26.1-fabric"
-deps.fabric_api = "0.154.2+26.1.2"
-
-["26.2.x"]
-mod.mc_compat = "~26.2"
-mod.mc_releases = ["26.2"]
-
-deps.modmenu = "20.0.0"
-deps.yacl = "3.9.5+26.2-fabric"
-deps.fabric_api = "0.154.2+26.2"
+deps.fabric_api = "0.161.0+26.3"
+deps.modmenu = "21.0.0"
+deps.vc_mod = "2.6.24+26.3"
+deps.yacl = "3.9.7+26.3-fabric"

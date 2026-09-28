@@ -12,23 +12,28 @@
     "sources": ""
   },
   "license": "",
-  "icon": "assets/template/icon.png",
-  "environment": "*",
-  "accessWidener": "aw/${aw_file}",
+  "icon": "assets/midichat/icon.png",
+  "environment": "client",
   "entrypoints": {
     "client": [
       {
         "adapter": "kotlin",
-        "value": "me.imtoggle.template.TemplateMod"
+        "value": "me.imtoggle.midichat.MidiChat"
       }
+    ],
+    "modmenu": [
+      "me.imtoggle.midichat.config.ModMenuIntegration"
+    ],
+    "voicechat": [
+      "me.imtoggle.midichat.core.MidiPlugin"
     ]
   },
-  "mixins": [
-    "template.mixins.json"
-  ],
   "depends": {
-    "fabric-language-kotlin": ">=1.13.12+kotlin.2.4.0",
+    "fabric-language-kotlin": "*",
     "fabricloader": ">=0.17",
-    "minecraft": "${minecraft}"
+    "minecraft": "${minecraft}",
+    "modmenu": "*",
+    "voicechat_api": "*",
+    "yet_another_config_lib_v3": "*"
   }
 }

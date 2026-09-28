@@ -4,7 +4,9 @@ plugins {
     kotlin("jvm")
 }
 
-version = "${property("mod.version")}+${sc.current.version}"
+fun getProp(prop: String): String = sc.properties[prop] as String
+
+version = "${property("mod.version")}+${getProp("mod.mc_version")}"
 base.archivesName = property("mod.id") as String
 
 val requiredJava: JavaVersion = when {
@@ -18,11 +20,6 @@ val requiredJava: JavaVersion = when {
 val compatibleVersions: List<String> = sc.properties.rawOrNull("mod", "mc_releases")
     ?.asList().orEmpty().map { it.toString() }
 
-val accessWidener = when {
-    sc.current.parsed >= "26.1" -> "26.x.accesswidener"
-    else -> "1.21.x.accesswidener"
-}
-
 repositories {
     /**
      * Restricts dependency search of the given [groups] to the [maven URL][url],
@@ -35,6 +32,9 @@ repositories {
     strictMaven("https://www.cursemaven.com", "CurseForge", "curse.maven")
     strictMaven("https://api.modrinth.com/maven", "Modrinth", "maven.modrinth")
     mavenCentral()
+    maven("https://maven.terraformersmc.com/")
+    maven("https://maven.isxander.dev/releases")
+    maven("https://maven.maxhenkel.de/repository/public")
 }
 
 dependencies {
@@ -43,13 +43,17 @@ dependencies {
 
     modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
     modImplementation("net.fabricmc:fabric-language-kotlin:1.13.12+kotlin.2.4.0")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${sc.properties["deps.fabric_api"] as String}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${getProp("deps.fabric_api")}")
+
+    modImplementation("com.terraformersmc:modmenu:${getProp("deps.modmenu")}")
+    modImplementation("dev.isxander:yet-another-config-lib:${getProp("deps.yacl")}")
+    modImplementation("de.maxhenkel.voicechat:voicechat-api:${getProp("deps.vc_api")}")
+    modImplementation("de.maxhenkel.voicechat:voicechat-api:${getProp("deps.vc_api")}:fabric-stub")
+    runtimeOnly("maven.modrinth:simple-voice-chat:fabric-${getProp("deps.vc_mod")}")
 }
 
 loom {
     fabricModJsonPath = rootProject.file("src/main/resources/fabric.mod.json")
-
-    accessWidenerPath = rootProject.file("src/main/resources/aw/$accessWidener")
 
     decompilerOptions.named("vineflower") {
         options.put("mark-corresponding-synthetics", "1")
@@ -59,8 +63,8 @@ loom {
         preferGradleTask = true
         generateRunConfig = true
         runDirectory = rootProject.file("run")
-        jvmArguments.add("-Dmixin.debug.export=true")
     }
+    runConfigs.remove(runConfigs["server"])
 }
 
 java {
@@ -77,7 +81,7 @@ java {
 tasks {
     processResources {
         fun MutableMap<String, String>.register(key: String, property: String) {
-            val value: String = sc.properties[property]
+            val value = getProp(property)
             inputs.property(key, value)
             set(key, value)
         }
@@ -87,13 +91,9 @@ tasks {
             register("name", "mod.name")
             register("version", "mod.version")
             register("minecraft", "mod.mc_compat")
-            set("aw_file", accessWidener)
         }
 
         filesMatching("fabric.mod.json") { expand(props) }
-
-        val mixinJava = "JAVA_${requiredJava.majorVersion}"
-        filesMatching("*.mixins.json") { expand("java" to mixinJava) }
     }
 
     register<Copy>("buildAndCollect") {
@@ -118,6 +118,7 @@ tasks {
             minecraftVersions.addAll(compatibleVersions)
             requires("fabric-language-kotlin")
             requires("modmenu")
+            requires("simple-voice-chat")
             requires("yacl")
         }
     }
