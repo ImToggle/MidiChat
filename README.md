@@ -1,6 +1,6 @@
 # MidiChat
 
-A client-side [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat) addon that lets you chat with your friends using MIDI inputs
+A client-side [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat) addon that lets you play music using MIDI inputs
 
 ## Features
 
